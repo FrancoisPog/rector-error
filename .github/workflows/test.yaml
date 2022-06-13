@@ -1,0 +1,30 @@
+name: Run the server tests
+
+on:
+  push:
+
+jobs:
+  rector:
+    name: Rector
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Composer install
+        shell: bash
+        run: docker-compose run -T rector composer install
+
+      - name: Rector process
+        shell: bash
+        run: docker-compose run -T rector ./vendor/bin/rector process --dry-run form.php

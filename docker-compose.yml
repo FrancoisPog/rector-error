@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  rector:
+    image: composer
+    volumes:
+      - '.:/app'
+    working_dir: /app
