@@ -1,23 +1,14 @@
 <?php
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
-final class RegistrationFormType extends AbstractType implements DataMapperInterface
+trait DtoFormTrait
 {
+    /** Set te form as its own data mapper */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        parent::buildForm($builder, $options);
         $builder
-            ->add('email')
             ->setDataMapper($this);
-    }
-
-    public function mapDataToForms(mixed $viewData, Traversable $forms)
-    {
-    }
-
-    public function mapFormsToData(Traversable $forms, mixed &$viewData)
-    {
     }
 }

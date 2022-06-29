@@ -4,6 +4,6 @@
     "symfony/form": "6.1.*"
   },
   "require-dev": {
-    "rector/rector": "^0.13.4"
+    "rector/rector": "dev-main"
   }
 }
